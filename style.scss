@@ -1,0 +1,95 @@
+@import "subStyle";
+
+$text-color: red;
+.header {
+  text-align: center;
+}
+
+.blog-post,
+h2 {
+  color: $text-color;
+}
+// instead of ul li {} => ul { //code li{}}
+ul {
+  display: flex;
+  li {
+    cursor: pointer;
+    margin: 20px;
+    color: $text-color;
+  }
+}
+
+// @mixin  like : function
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin border-stroke($val) {
+  @if $val == light {
+    border: 1px solid black;
+  } @else if $val == medium {
+    border: 3px solid black;
+  } @else if $val == heavy {
+    border: 6px solid black;
+  } @else {
+    border: none;
+  }
+}
+
+#awesome {
+  width: 150px;
+  height: 150px;
+  background-color: green;
+  @include border-radius(20px);
+  @include border-stroke(medium);
+}
+@for $i from 1 through 6 {
+  .text-#{$i} {
+    font-size: 15px * $i;
+  }
+}
+
+@each $color in blue, black, red {
+  .#{$color}-bg {
+    background-color: $color;
+  }
+}
+// or define a list
+$colors: (
+  color1: blue,
+  color2: red,
+  color3: green,
+);
+// go throw the list
+@each $key, $color in $colors {
+  .#{$color}-bg {
+    color: $color;
+  }
+}
+div {
+  height: 200px;
+  width: 200px;
+  @include border-stroke-red(heavy);
+}
+$x: 1;
+@while $x <= 5 {
+  .text-#{$x}-#{$x} {
+    font-size: 15px * $x;
+  }
+  $x: $x + 1;
+}
+
+h3 {
+  text-align: center;
+}
+.info {
+  width: 200px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+.info-important {
+  @extend .info;
+  background-color: magenta;
+}

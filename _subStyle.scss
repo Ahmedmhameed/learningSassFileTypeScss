@@ -1,0 +1,11 @@
+@mixin border-stroke-red($val) {
+  @if $val == light {
+    border: 1px solid rgb(255, 0, 0);
+  } @else if $val == medium {
+    border: 3px solid red;
+  } @else if $val == heavy {
+    border: 6px solid red;
+  } @else {
+    border: none;
+  }
+}
